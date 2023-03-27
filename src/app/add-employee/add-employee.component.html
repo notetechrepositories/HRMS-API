@@ -1,0 +1,139 @@
+<main>
+    <div class="container-fluid">
+        <!-- START: Breadcrumbs-->
+        <div class="row ">
+            <div class="col-12  align-self-center">
+                <div class="sub-header mt-3 py-3 px-3 align-self-center d-sm-flex w-100 rounded">
+                    <div class="w-sm-100 mr-auto"><h4 class="mb-0">Insert Employee Details</h4></div>
+
+                    <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item active"><a href="#">Insert Employee Details</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- END: Breadcrumbs-->
+
+        <!-- START: Card Data-->
+        <div class="row row-eq-height">
+            <div class="col-12 mt-3">
+                <div class="card">
+                   <div class="card-content">
+                                                <div class="card-body">
+                                                    <div class="row">                                           
+                                                        <div class="col-12">
+                                                            <form #userForm="ngForm" (ngSubmit)="getUserForm(userForm.value)">
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="inputEmail4">Employee Name</label>
+                                                                        <input type="text" class="form-control rounded" ngModel name="emp_name" id="employeeName" placeholder="EmployeName" [(ngModel)]="employee.emp_name">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="inputPassword4">Date of Birth</label>
+                                                                        <input type="date" class="form-control" ngModel id="dob" name="dob" placeholder="Date of Birth" [(ngModel)]="employee.dob">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="gender">Gender</label>
+                                                                        <select id="gender" class="form-control" name="gender" ngModel [(ngModel)]="employee.gender">
+                                                                            <option selected>Choose...</option>
+                                                                            <option>Male</option>
+                                                                            <option>Female</option>
+                                                                            <option>Other</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="bloodGroup">Blood Group</label>
+                                                                        <select id="bloodGroup" class="form-control" name="blood_group" ngModel [(ngModel)]="employee.blood_group">
+                                                                            <option>Choose...</option>
+                                                                            <option>A+</option>
+                                                                            <option>A-</option>
+                                                                            <option>B+</option>
+                                                                            <option>B-</option>
+                                                                            <option>O+</option>
+                                                                            <option>O-</option>
+                                                                            <option>AB+</option>
+                                                                            <option>AB-</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="inputAddress">Address </label>
+                                                                        <input type="text" class="form-control" ngModel id="inputAddres" name="house_name" placeholder="Apartment or House name" [(ngModel)]="employee.house_name">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="postoffice">post office</label>
+                                                                        <input type="text" class="form-control" ngModel name="postoffice" id="postoffice" placeholder="post office name" [(ngModel)]="employee.post_office">
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="pin">PIN</label>
+                                                                        <input type="text" class="form-control" ngModel id="pin" name="pin" placeholder="PIN code" [(ngModel)]="employee.pin">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="place">Place</label>
+                                                                        <input type="text" class="form-control" ngModel id="place" name="place" placeholder="Place" [(ngModel)]="employee.place">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="inputState">State</label>
+                                                                        <select id="inputState" class="form-control" name="state" ngModel (ngModelChange)="selectdistrict($event)" [(ngModel)]="employee.state">
+                                                                         
+                                                                            <option value="{{sta.stateId}}" *ngFor="let sta of states" >{{sta.stateName}}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="district">District</label>
+                                                                        <select id="district" class="form-control" name="district" ngModel [(ngModel)]="employee.district">
+                                                                            
+                                                                            <option *ngFor="let dis of district" value="{{dis.districtId}}">{{dis.districtName}}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="inputEmail">Email</label>
+                                                                        <input type="email" class="form-control rounded" name="email" ngModel id="inputEmail" placeholder="Email" [(ngModel)]="employee.email">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="inputPassword">Password</label>
+                                                                        <input type="password" class="form-control"  ngModel name="password" id="inputPassword" placeholder="Password" [(ngModel)]="employee.password">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="phoneNumber">Phone Number</label>
+                                                                        <input type="text" class="form-control datepicker" name="ph_no" ngModel id="phoneNumber" placeholder="Phone Number"[(ngModel)]="employee.ph_no">
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="department">Department</label>
+                                                                        <select class="form-control" name="department" ngModel (ngModelChange)="selecteddepartment($event)"  >
+                                                                       
+                                                                            <option value="{{dept.id}}" *ngFor="let dept of departments">{{dept.depName}}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="designation">Designation</label>
+                                                                        <select id="designation" class="form-control" name="designation_id" ngModel [(ngModel)]="employee.designation_id" >
+                                                                          
+                                                                            <option value="{{degn.id}}" *ngFor="let degn of designation">{{degn.des_name}}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- <div class="form-group">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked="">
+                                                                        <label class="custom-control-label" for="checkbox-signin">Status</label>
+                                                                    </div>
+                                                                </div> -->
+                                                                <button type="submit" class="btn btn-primary">Save</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END: Card DATA-->
+    </div>
+</main>
